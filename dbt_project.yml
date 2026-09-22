@@ -1,0 +1,22 @@
+# xengine-consumer-analytics — the ANALYTICS team's own dbt project (Snowflake). Reads the producer's Iceberg tables through read-only
+# Glue-backed pointers in DATAPAI.STOCK_COMMON_MESH (created by xengine snowflake-sync), builds Iceberg marts in STOCK_CONSUMER_MESH.
+name: xengine_consumer_analytics
+version: "1.0.0"
+config-version: 2
+profile: xengine_consumer_analytics
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+flags:
+  enable_iceberg_materializations: true
+
+models:
+  xengine_consumer_analytics:
+    +tags: ["cross_engine_mesh", "cross_engine", "role_consumer", "engine_snowflake"]
+    +materialized: table
+    +table_format: iceberg
+    +external_volume: DATAPAI_S3_VOL
+    +base_location_subpath: _xengine_mesh_consumer
+    +meta: {engine: snowflake, role: consumer}

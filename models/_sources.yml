@@ -6,13 +6,13 @@ sources:
       In Snowflake they are read-only pointers created by lineage/xengine/snowflake_sync.py — same files, no copy.
     database: DATAPAI
     schema: STOCK_COMMON_MESH
-    meta: {engine: snowflake, produced_by_engine: athena, physical_format: iceberg, glue_database: stock_common_mesh}
+    config: {meta: {engine: snowflake, produced_by_engine: athena, physical_format: iceberg, glue_database: stock_common_mesh}}
     tables:
       - name: common_price_daily
-        meta: {physical_identity: "glue:stock_common_mesh.common_price_daily"}
+        config: {meta: {physical_identity: "glue:stock_common_mesh.common_price_daily"}}
       - name: common_exchange
-        meta: {physical_identity: "glue:stock_common_mesh.common_exchange"}
+        config: {meta: {physical_identity: "glue:stock_common_mesh.common_exchange"}}
       - name: common_ticker
-        meta: {physical_identity: "glue:stock_common_mesh.common_ticker"}
+        config: {meta: {physical_identity: "glue:stock_common_mesh.common_ticker"}}
       - name: common_fx_daily
-        meta: {physical_identity: "glue:stock_common_mesh.common_fx_daily"}
+        config: {meta: {physical_identity: "glue:stock_common_mesh.common_fx_daily"}}
